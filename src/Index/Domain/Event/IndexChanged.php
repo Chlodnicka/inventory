@@ -9,17 +9,17 @@ use Inventory\SharedKernel\Event;
 
 abstract class IndexChanged implements Event
 {
-    protected int $supplierId;
-    protected IndexId $indexId;
-
-    public function __construct(int $supplierId, IndexId $indexId)
+    public function __construct(protected int $supplierId, protected IndexId $indexId)
     {
-        $this->supplierId = $supplierId;
-        $this->indexId = $indexId;
     }
 
     public function getSupplierId(): int
     {
         return $this->supplierId;
+    }
+
+    public function getIndexId(): IndexId
+    {
+        return $this->indexId;
     }
 }

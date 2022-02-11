@@ -10,6 +10,7 @@ final class Blacklist
 {
     public function filter(Alias $alias): bool
     {
+        //blacklist has changed alias status?
         return true;
     }
 }

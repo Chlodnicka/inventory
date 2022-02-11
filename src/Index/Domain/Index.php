@@ -40,9 +40,9 @@ final class Index
         return $this->id;
     }
 
-    public function getMoney(): Money
+    public function getPrice(): Money
     {
-        return $this->money;
+        return clone $this->money;
     }
 
     public function getQuantity(): Quantity
@@ -65,8 +65,8 @@ final class Index
         return new IndexStockChanged(
             $supplierId,
             $this->getId(),
-            $nextIndex->getMoney(),
-            !$nextIndex->getMoney()->equals($this->money),
+            $nextIndex->getPrice(),
+            !$nextIndex->getPrice()->equals($this->money),
             $nextIndex->getQuantity(),
             !$nextIndex->getQuantity()->equals($this->quantity)
         );

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inventory\Index\Domain\Event;
 
+use Inventory\Alias\Application\ProductId;
 use Inventory\Index\Domain\IndexId;
 use Inventory\Index\Domain\Quantity;
 use Money\Money;

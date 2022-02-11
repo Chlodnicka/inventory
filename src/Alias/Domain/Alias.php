@@ -5,17 +5,28 @@ declare(strict_types=1);
 namespace Inventory\Alias\Domain;
 
 use Inventory\Alias\Application\AliasId;
+use Inventory\Alias\Application\ProductId;
+use Inventory\Index\Domain\IndexId;
 use Inventory\Index\Domain\Quantity;
 use Money\Money;
 
 final class Alias
 {
-    private AliasId $id;
-    private Money $initialPrice;
-    private Money $purchasePrice;
-    private Money $salesPrice;
-    private Quantity $quantity;
-    private int $changes = 0;
+    public function __construct(
+        private AliasId $id,
+        private IndexId $indexId,
+        private Money $initialPrice,
+        private Money $purchasePrice,
+        private Money $salesPrice,
+        private Quantity $quantity,
+        private int $changes = 0
+    ) {
+    }
+
+    public function create(): void
+    {
+        $this->changes++;
+    }
 
     public function restock(Quantity $quantity): void
     {
@@ -71,5 +82,8 @@ final class Alias
         return $this->changes > 0;
     }
 
-
+    public function getProductId(): ProductId
+    {
+        return $this->id->getProductId();
+    }
 }
